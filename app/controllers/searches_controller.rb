@@ -1,9 +1,11 @@
 class SearchesController < ApplicationController
 
-  def new
+  def index
   end
 
   def create
+    @search = Search.new
+    @search.save
   end
 
 end
