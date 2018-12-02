@@ -79,4 +79,4 @@ test:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
 production:
-  url: <%= ENV['DATABASE_URL'] %>
+  url: postgres://fdbbycvgyekmxv:199a80b886faa702b1a4e855524bd17f5f8d11e7049451a73ae47e31d492fe6c@ec2-54-75-231-3.eu-west-1.compute.amazonaws.com:5432/d5o2rhlf95l5jl
