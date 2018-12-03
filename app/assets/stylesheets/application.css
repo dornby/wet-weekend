@@ -19,10 +19,6 @@
   src: url(app/assets/AvenirLTStd-Roman.otf) format("truetype");
 }
 
-* {
-  font-family: "Avenir";
- }
-
 h1 {
    font-size: 100px;
    line-height: 30px;
@@ -72,3 +68,49 @@ h1 {
 	position:relative;
 	top:1px;
 }
+
+ @media (min-device-aspect-ratio: 405/454) and (max-width: 1654px) and (max-height: 1098px) {
+  body {
+    background-image: url("https://raw.githubusercontent.com/dornby/wet-weekend/master/app/assets/images/RAIN.jpg");
+  }
+}
+@media (max-device-aspect-ratio: 405/454), (min-width: 1654px), (min-height: 1098px) {
+  body {
+    background-image: url("https://raw.githubusercontent.com/dornby/wet-weekend/master/app/assets/images/RAIN.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    background-color: #ffffff;
+  }
+
+  h3 {
+    position: fixed;
+    font-size: 70px;
+    line-height: 80px;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    color: #7bb7af;
+    text-shadow: 1px 1px 1px black
+  }
+
+  .main_button {
+    font-size:50px;
+    padding:30px 100px;
+    position: fixed;
+    top: 80%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%)
+  }
+
+  .indented {
+    position: fixed;
+    top: 8%;
+  }
+}
+
+* {
+  font-family: "Avenir";
+ }
