@@ -1,7 +1,7 @@
 require 'net/http'
 require 'json'
 
-class Forecast# < ApplicationRecord
+class Forecast < ApplicationRecord
 
   CITIES = [
     {"postal_code" => "93170",
