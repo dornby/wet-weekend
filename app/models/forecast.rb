@@ -29,8 +29,8 @@ class Forecast < ApplicationRecord
 
   def extract_forecasts
 
-    allowed_hours = [6, 15]
-    halfdays = {6 => "Morning", 15 => "Afternoon"}
+    allowed_hours = [6, 7, 8, 15, 16, 17]
+    halfdays = {6 => "Morning", 7 => "Morning", 8 => "Morning", 15 => "Afternoon", 16 => "Afternoon", 17 => "Afternoon"}
     forecast = []
 
     CITIES.each do |city|

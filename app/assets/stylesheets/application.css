@@ -13,3 +13,61 @@
  *= require_tree .
  *= require_self
  */
+
+@font-face {
+  font-family: "Avenir";
+  src: url(app/assets/AvenirLTStd-Roman.otf) format("truetype");
+}
+
+* {
+  font-family: "Avenir";
+ }
+
+h1 {
+   font-size: 100px;
+   line-height: 30px;
+   text-shadow: 5px 5px 2px black;
+  }
+
+ h3 {
+   font-size: 45px;
+   font-style: italic;
+   font-weight: bold;
+   text-align: center;
+   text-shadow: 3px 3px 1px black
+ }
+
+.indented {
+  margin-left: calc(50% - 207px);
+ }
+
+ .main_button {
+	-moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
+	box-shadow:inset 0px 1px 0px 0px #ffffff;
+	background-color:#ffffff;
+	-moz-border-radius:6px;
+	-webkit-border-radius:6px;
+	border-radius:6px;
+	border:2px solid black;
+	display:inline-block;
+	cursor:pointer;
+	color:#37a382;
+	font-family:"Avenir";
+	font-size:25px;
+  font-weight: bold;
+	padding:18px 76px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #ffffff;
+  position:relative;
+  left:50%;
+  transform: translateX(-50%)
+}
+
+.main_button:hover {
+	background-color:#f6f6f6;
+}
+.main_button:active {
+	position:relative;
+	top:1px;
+}
