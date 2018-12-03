@@ -26,8 +26,8 @@ class Forecast# < ApplicationRecord
       response = JSON.parse(Net::HTTP.get("api.openweathermap.org", "/data/2.5/forecast?zip=#{city["postal_code"]},fr&APPID=3a0eecab5afb71e7b03a1681177656ef"))
 
       city_forecast = {
-        "city_name" => city["name"],
-        "city_code" => city["postal_code"],
+        "name" => city["name"],
+        "code" => city["postal_code"],
         "weather" => []
         }
 
@@ -37,33 +37,30 @@ class Forecast# < ApplicationRecord
             "day" => "#{Time.at(weather["dt"]).strftime('%A')}",
             "halfday" => "#{halfdays[Time.at(weather["dt"]).hour]}",
             "weather_main" => weather["weather"][0]["main"],
-            "weather_description" => weather["weather"][0]["description"]
+            "weather_description" => weather["weather"][0]["description"],
+            "weather_id" => weather["weather"][0]["id"]
           }]
         end
       end
 
+      city_forecast["rainy_hd"] = city_forecast["weather"].count{|hd| hd["weather_id"].between?(200,202) || hd["weather_id"] == 310 || hd["weather_id"] == 312 || hd["weather_id"] == 314 || hd["weather_id"].between?(500,599)}
+
       forecast += [city_forecast]
 
     end
-
     forecast
-
   end
 
-  def count_rainy
-    forecast = extract_forecasts
-    city_forecasts = []
-    forecast.each do |city_forecast|
-      city_forecasts += [
-        {"city_name" => "#{city_forecast["city_name"]}",
-        "city_code" => "#{city_forecast["city_code"]}",
-        "city_rainy_hd" => city_forecast["weather"].count{|hd| hd["weather_main"] == "Rain"}
-        }
-      ]
-    end
-    p city_forecasts
+  def select_rainy_forecasts
+    max_rainy_hd = extract_forecasts.max_by {|c| c["rainy_hd"]}["rainy_hd"]
+    rainy_forecasts = extract_forecasts.reject{|c| c["rainy_hd"] < max_rainy_hd}
+    rainy_forecasts
+  end
+
+  def somewhere_rainy?
+    select_rainy_forecast.count > 0
   end
 
 end
 
-Forecast.new.count_rainy
+p Forecast.new.somewhere_rainy?
