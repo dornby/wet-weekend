@@ -1,8 +1,7 @@
 class Search < ApplicationRecord
 
-  def pick_random_destination
-    city = Cities.new.pick_random_city
-    p city["name"]
+  def show_forecasts
+      Forecast.new.extract_forecasts
   end
 
 end

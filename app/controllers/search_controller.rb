@@ -7,7 +7,7 @@ class SearchController < ApplicationController
 
   def show
     create
-    p @search.pick_random_destination
+    p @search.show_forecasts
   end
 
 end
