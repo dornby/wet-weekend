@@ -29,8 +29,8 @@ class Forecast < ApplicationRecord
 
   def extract_forecasts
 
-    allowed_hours = [7, 16]
-    halfdays = {7 => "Morning", 16 => "Afternoon"}
+    allowed_hours = [6, 15]
+    halfdays = {6 => "Morning", 15 => "Afternoon"}
     forecast = []
 
     CITIES.each do |city|
@@ -66,7 +66,7 @@ class Forecast < ApplicationRecord
   def select_rainy_forecasts
     max_rainy_hd = extract_forecasts.max_by {|c| c["rainy_hd"]}["rainy_hd"]
     rainy_forecasts = extract_forecasts.reject{|c| c["rainy_hd"] < max_rainy_hd}
-    rainy_forecasts
+    rainy_forecasts.sample
   end
 
   def somewhere_rainy?
