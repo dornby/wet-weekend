@@ -7,7 +7,7 @@ class SearchController < ApplicationController
 
   def show
     create
-    p @search.show_forecasts
+    p @search.show_forecast
   end
 
 end

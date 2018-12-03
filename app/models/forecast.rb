@@ -12,6 +12,18 @@ class Forecast# < ApplicationRecord
     },
     {"postal_code" => "34000",
       "name" => "Montpellier"
+    },
+    {"postal_code" => "33000",
+      "name" => "Bordeaux"
+    },
+    {"postal_code" => "59000",
+      "name" => "Lille"
+    },
+    {"postal_code" => "40000",
+      "name" => "Nantes"
+    },
+    {"postal_code" => "29000",
+      "name" => "Quimper"
     }
   ]
 
@@ -32,7 +44,7 @@ class Forecast# < ApplicationRecord
         }
 
       response["list"].each do |weather|
-        if Time.at(weather["dt"]).wday.between?(5,7) && allowed_hours.include?(Time.at(weather["dt"]).hour)
+        if Time.at(weather["dt"]).wday.between?(6,7) && allowed_hours.include?(Time.at(weather["dt"]).hour)
           city_forecast["weather"] += [{
             "day" => "#{Time.at(weather["dt"]).strftime('%A')}",
             "halfday" => "#{halfdays[Time.at(weather["dt"]).hour]}",
@@ -58,9 +70,7 @@ class Forecast# < ApplicationRecord
   end
 
   def somewhere_rainy?
-    select_rainy_forecast.count > 0
+    select_rainy_forecasts.count > 0
   end
 
 end
-
-p Forecast.new.somewhere_rainy?

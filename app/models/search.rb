@@ -1,7 +1,7 @@
 class Search < ApplicationRecord
 
-  def show_forecasts
-      Forecast.new.select_rainy_forecasts
+  def show_forecast
+      Forecast.new.select_rainy_forecasts.sample
   end
 
 end
