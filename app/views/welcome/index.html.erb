@@ -1,22 +1,42 @@
 <style>
   body {
     color: #ffffff;
-    line-height: 50px;
-    /* background-image: url("https://raw.githubusercontent.com/dornby/wet-weekend/master/app/assets/images/RAIN.jpg"); */
   }
+
+  /* @media (min-device-aspect-ratio: 405/454) and (max-width: 1654px) and (max-height: 1098px) {
+  body {
+  background-image: url("https://raw.githubusercontent.com/dornby/wet-weekend/master/app/assets/images/RAIN.jpg");
+}
+}
+
+@media (max-device-aspect-ratio: 405/454), (min-width: 1654px), (min-height: 1098px) {
+body {
+background-image: url("https://raw.githubusercontent.com/dornby/wet-weekend/master/app/assets/images/RAIN.jpg");
+background-repeat: no-repeat;
+background-size: cover;
+position: relative;
+background-color: #7bb7af;
+}
+} */
 
 </style>
 
-<div class="indented">
-  <h1>a</h1>
-  <h1>wet</h1>
-  <h1>weekend</h1>
+<div class="hero">
+  <div class="hero_image">
+    <div class="hero_blank"></div>
+      <div class="hero_text">
+      <h1>a</h1>
+      <h1>wet</h1>
+      <h1>weekend</h1>
+    </div>
+    <div class="hero_blank"></div>
+  </div>
 </div>
 
-<br>
+<div class="middle_homepage">
+  <h3>We're here to suggest the best place for you to get wet this weekend</h3>
+</div>
 
-<h3>We're here to suggest the best place for you to get wet this weekend</h3>
-
-<br>
-
-<a href=<%= search_index_path %> class="main_button">Make it rain</a>
+<div class="bottom_homepage">
+  <a href=<%= search_index_path %> class="main_button">Make it rain</a>
+</div>
