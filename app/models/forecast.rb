@@ -1,7 +1,7 @@
 require 'net/http'
 require 'json'
 
-class Forecast < ApplicationRecord
+class Forecast #< ApplicationRecord
 
   CITIES = [
     {"postal_code" => "93170",
@@ -44,18 +44,36 @@ class Forecast < ApplicationRecord
         }
 
       response["list"].each do |weather|
-        if Time.at(weather["dt"]).wday.between?(6,7) && allowed_hours.include?(Time.at(weather["dt"]).hour)
+        if [0, 1].include?(Time.at(weather["dt"]).wday) && allowed_hours.include?(Time.at(weather["dt"]).hour)
           city_forecast["weather"] += [{
             "day" => "#{Time.at(weather["dt"]).strftime('%A')}",
             "halfday" => "#{halfdays[Time.at(weather["dt"]).hour]}",
             "weather_main" => weather["weather"][0]["main"],
             "weather_description" => weather["weather"][0]["description"],
-            "weather_id" => weather["weather"][0]["id"]
+            "weather_id" => weather["weather"][0]["id"],
+            "icon_name" => if [200,202].include?(weather["weather"][0]["id"])
+              "wi-day-thunderstorm"
+            elsif weather["weather"][0]["id"].between?(500,504)
+              "wi-day-rain"
+            elsif weather["weather"][0]["id"].between?(512,599) || weather["weather"][0]["id"].between?(300,399)
+              "wi-rain"
+            elsif weather["weather"][0]["id"] == 511
+              "wi-snow"
+            end,
+            "icon_code" => if [200,202].include?(weather["weather"][0]["id"])
+              "f010"
+            elsif weather["weather"][0]["id"].between?(500,504)
+              "f008"
+            elsif weather["weather"][0]["id"].between?(512,599) || weather["weather"][0]["id"].between?(300,399)
+              "f019"
+            elsif weather["weather"][0]["id"] == 511
+              "f01b"
+            end
           }]
         end
       end
 
-      city_forecast["rainy_hd"] = city_forecast["weather"].count{|hd| hd["weather_id"].between?(200,202) || hd["weather_id"] == 310 || hd["weather_id"] == 312 || hd["weather_id"] == 314 || hd["weather_id"].between?(500,599)}
+      city_forecast["rainy_hd"] = city_forecast["weather"].count{|hd| [200, 202].include?(hd["weather_id"]) || hd["weather_id"].between?(500,599) || hd["weather_id"].between?(300,399)}
 
       forecast += [city_forecast]
 

@@ -1,4 +1,34 @@
-<h1>Search</h1>
+<style>
+  body {
+    color: #ffffff;
+  }
+</style>
 
 <% @search = SearchController.new %>
-<%= @search.show %>
+<% forecast = @search.show %>
+
+<div class="search_top">
+
+  <div class="search_hero_image">
+
+    <h2>We recommend you spend your weekend in <%="#{forecast["name"]}"%></h2>
+
+  </div>
+
+</div>
+
+<div class="search_bottom">
+
+  <% forecast["weather"].each_with_index do |weather_day, index| %>
+
+  <div class="search_results">
+
+    <i class= "wi wi-owm-day-<%= "#{weather_day["weather_id"]}" %>" %></i>
+    <h4><%= "#{weather_day["day"]} #{weather_day["halfday"]}" %></h4>
+
+  </div>
+</div>
+
+    <% end %>
+
+<h3><%  %></h3>

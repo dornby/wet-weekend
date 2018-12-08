@@ -26,7 +26,7 @@
 
 @font-face {
   font-family: "Avenir";
-  src: url(app/assets/AvenirLTStd-Roman.otf) format("truetype");
+  src: url(../font/AvenirLTStd-Roman.otf) format("truetype");
 }
 
 * {
@@ -36,6 +36,8 @@
  html, body {
    width: 100%;
    height: 100%;
+   display: flex;
+   flex-direction: column;
 }
 
 .hero {
@@ -67,6 +69,11 @@ h1 {
    text-shadow: 5px 5px 2px black;
   }
 
+h2 {
+   font-size: 4vh;
+   text-shadow: 3px 3px 1px black;
+  }
+
 .middle_homepage {
   height: 20%;
   display: flex;
@@ -85,7 +92,7 @@ h1 {
 .bottom_homepage {
   height: 30%;
   display: flex;
-    align-items: center;
+  align-items: center;
 }
 
 .main_button {
@@ -111,4 +118,57 @@ h1 {
 .main_button:active {
  position:relative;
  top:1px;
+}
+
+.search_top {
+  order: 1;
+  flex-basis: 40%;
+}
+
+.search_bottom {
+  order: 2;
+  flex-basis: 60%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: space-around;
+  justify-content: space-around;
+}
+
+.search_results {
+  flex-wrap: wrap;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-content: space-around;
+  text-align: center;
+  color: #000000;
+  flex-basis: 100%;
+}
+
+.search_hero_image {
+  height: 100%;
+  background-image: url("https://raw.githubusercontent.com/dornby/wet-weekend/master/app/assets/images/RAIN.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+h4 {
+  order: 2
+}
+
+@media (min-device-width: 500px) {
+  .search_results {
+    flex-basis: 50%
+  }
+}
+
+@media (min-device-width: 1000px) {
+  .search_results {
+    flex-basis: 25%
+  }
 }
