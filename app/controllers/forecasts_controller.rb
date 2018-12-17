@@ -44,7 +44,7 @@ class ForecastsController < ApplicationController
         }
 
       response["list"].each do |weather|
-        if [0, 1].include?(Time.at(weather["dt"]).wday) && allowed_hours.include?(Time.at(weather["dt"]).hour)
+        if [1, 2].include?(Time.at(weather["dt"]).wday) && allowed_hours.include?(Time.at(weather["dt"]).hour)
           city_forecast["weather"] += [{
             "day" => "#{Time.at(weather["dt"]).strftime('%A')}",
             "halfday" => "#{halfdays[Time.at(weather["dt"]).hour]}",

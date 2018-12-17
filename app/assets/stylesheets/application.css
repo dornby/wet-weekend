@@ -90,7 +90,7 @@ h2 {
   }
 
   h4 {
-    margin: 0 10px;
+    margin: 10px 10px;
     font-size: 15px;
   }
 
@@ -131,18 +131,17 @@ h2 {
 }
 
 .search_middle {
-  height: 10%;
+  height: 3%;
   display: flex;
   align-content: space-around;
   justify-content: space-around;
 }
 
 .search_bottom {
-  height: 50%;
+  height: 57%;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  align-content: space-around;
   justify-content: space-around;
 }
 
@@ -171,13 +170,13 @@ h2 {
   text-align: center;
 }
 
-@media (min-device-width: 700px) {
+@media screen and (min-width: 700px) {
   .search_results {
     flex-basis: 40%
   }
 }
 
-@media (min-device-width: 1400px) {
+@media screen and (min-width: 1400px) {
   .search_results {
     flex-basis: 20%
   }
