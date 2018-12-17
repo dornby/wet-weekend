@@ -5,9 +5,8 @@ class SearchController < ApplicationController
     @search.save
   end
 
-  def show
-    create
-    p @search.show_forecast
+  def show_forecast
+      ForecastsController.new.select_rainy_forecasts
   end
 
 end
