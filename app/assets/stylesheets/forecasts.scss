@@ -1,3 +1,67 @@
 // Place all the styles related to the Forecasts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.search_top {
+  height: 40%;
+  background-color: #000000;
+}
+
+.search_middle {
+  height: 3%;
+  display: flex;
+  align-content: space-around;
+  justify-content: space-around;
+}
+
+.search_bottom {
+  height: 57%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.search_placeholder {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  font-size: 100px
+}
+
+.search_results {
+  flex-wrap: wrap;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-content: space-around;
+  text-align: center;
+  align-items: center;
+  color: #000000;
+  margin: 30px 20px;
+  flex-basis: 80%;
+  border: 1px solid black;
+}
+
+.search_hero_image {
+  height: 100%;
+  background-image: url("https://raw.githubusercontent.com/dornby/wet-weekend/master/app/assets/images/RAIN.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+@media screen and (min-width: 700px) {
+  .search_results {
+    flex-basis: 40%
+  }
+}
+
+@media screen and (min-width: 1400px) {
+  .search_results {
+    flex-basis: 20%
+  }
+}

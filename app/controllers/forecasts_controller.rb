@@ -1,7 +1,7 @@
 require 'net/http'
 require 'json'
 
-class ForecastsController < ApplicationController
+class ForecastsController #< ApplicationController
 
   CITIES = [
     {"postal_code" => "93170",
@@ -9,6 +9,9 @@ class ForecastsController < ApplicationController
     },
     {"postal_code" => "75001",
       "name" => "Paris"
+    },
+    {"postal_code" => "20000",
+      "name" => "Ajaccio"
     },
     {"postal_code" => "34000",
       "name" => "Montpellier"
@@ -44,7 +47,7 @@ class ForecastsController < ApplicationController
         }
 
       response["list"].each do |weather|
-        if [1, 2].include?(Time.at(weather["dt"]).wday) && allowed_hours.include?(Time.at(weather["dt"]).hour)
+        if [6, 0].include?(Time.at(weather["dt"]).wday) && allowed_hours.include?(Time.at(weather["dt"]).hour)
           city_forecast["weather"] += [{
             "day" => "#{Time.at(weather["dt"]).strftime('%A')}",
             "halfday" => "#{halfdays[Time.at(weather["dt"]).hour]}",
@@ -74,11 +77,16 @@ class ForecastsController < ApplicationController
       end
 
       city_forecast["rainy_hd"] = city_forecast["weather"].count{|hd| [200, 202].include?(hd["weather_id"]) || hd["weather_id"].between?(500,599) || hd["weather_id"].between?(300,399)}
-
+      city_forecast["forecast_count"] = city_forecast["weather"].count
       forecast += [city_forecast]
 
     end
     forecast
+  end
+
+  def got_forecasts?
+    existent_forecasts = extract_forecasts.reject{|f| f["forecast_count"] < 1}
+    existent_forecasts.count > 0
   end
 
   def select_rainy_forecasts
@@ -88,7 +96,8 @@ class ForecastsController < ApplicationController
   end
 
   def somewhere_rainy?
-    select_rainy_forecasts.count > 0
+    rainy_forecasts = extract_forecasts.reject{|f| f["rainy_hd"] < 1}
+    rainy_forecasts.count > 0
   end
 
 end

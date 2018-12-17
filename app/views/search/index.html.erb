@@ -6,6 +6,8 @@
 
 <% @search = SearchController.new %>
 <% forecast = @search.show_forecast %>
+<% got_forecasts = @search.got_forecast %>
+<% got_rainy = @search.somewhere_rainy %>
 
 <div class="search_top">
 
@@ -23,60 +25,74 @@
 
 <div class="search_bottom">
 
-  <% if forecast["weather"][0].nil? %>
-  <div class="search_results">
-    <h4><i>Unknown as of yet</i></h4>
-    <img src="https://i.ibb.co/hZhfyXS/sad-cloud.png" alt="Cloud" style="width: 180px;margin: 30px 30px; text-align: center;">
-    <h4>Forecast for Saturday Morning is not yet available, please come back soon.</h4>
-  </div>
-  <% else %>
-  <div class="search_results">
-    <h4><i><%= "#{forecast["weather"][0]["weather_description"]}" %></i></h4>
-    <i class= "wi wi-owm-day-<%= "#{forecast["weather"][0]["weather_id"]}" %>" %></i>
-    <h4><%= "#{forecast["weather"][0]["day"]} #{forecast["weather"][0]["halfday"]}" %></h4>
-  </div>
-  <% end %>
+  <% if got_forecasts and got_rainy %>
 
-  <% if forecast["weather"][1].nil? %>
-  <div class="search_results">
-    <h4><i>Unknown as of yet</i></h4>
-    <img src="https://i.ibb.co/hZhfyXS/sad-cloud.png" alt="Cloud" style="width: 180px;margin: 30px 30px; text-align: center;">
-    <h4>Forecast for Saturday Afternoon is not yet available, please come back soon.</h4>
-  </div>
-  <% else %>
-  <div class="search_results">
-    <h4><i><%= "#{forecast["weather"][1]["weather_description"]}" %></i></h4>
-    <i class= "wi wi-owm-day-<%= "#{forecast["weather"][1]["weather_id"]}" %>" %></i>
-    <h4><%= "#{forecast["weather"][1]["day"]} #{forecast["weather"][1]["halfday"]}" %></h4>
-  </div>
-  <% end %>
+    <% if forecast["weather"][0].nil? %>
+      <div class="search_results">
+        <h4><i>Unknown as of yet</i></h4>
+        <img src="https://i.ibb.co/hZhfyXS/sad-cloud.png" alt="Cloud" style="width: 180px;margin: 30px 30px; text-align: center;">
+        <h4>Forecast for Saturday Morning is not yet available, please come back soon.</h4>
+      </div>
+    <% else %>
+      <div class="search_results">
+        <h4><i><%= "#{forecast["weather"][0]["weather_description"]}" %></i></h4>
+        <i class= "wi wi-owm-day-<%= "#{forecast["weather"][0]["weather_id"]}" %>" %></i>
+        <h4><%= "#{forecast["weather"][0]["day"]} #{forecast["weather"][0]["halfday"]}" %></h4>
+      </div>
+    <% end %>
 
-  <% if forecast["weather"][2].nil? %>
-  <div class="search_results">
-    <h4><i>Unknown as of yet</i></h4>
-    <img src="https://i.ibb.co/hZhfyXS/sad-cloud.png" alt="Cloud" style="width: 180px;margin: 30px 30px; text-align: center;">
-    <h4>Forecast for Sunday Morning is not yet available, please come back soon.</h4>
-  </div>
-  <% else %>
-  <div class="search_results">
-    <h4><i><%= "#{forecast["weather"][2]["weather_description"]}" %></i></h4>
-    <i class= "wi wi-owm-day-<%= "#{forecast["weather"][2]["weather_id"]}" %>" %></i>
-    <h4><%= "#{forecast["weather"][2]["day"]} #{forecast["weather"][2]["halfday"]}" %></h4>
-  </div>
-  <% end %>
+    <% if forecast["weather"][1].nil? %>
+      <div class="search_results">
+        <h4><i>Unknown as of yet</i></h4>
+        <img src="https://i.ibb.co/hZhfyXS/sad-cloud.png" alt="Cloud" style="width: 180px;margin: 30px 30px; text-align: center;">
+        <h4>Forecast for Saturday Afternoon is not yet available, please come back soon.</h4>
+      </div>
+    <% else %>
+      <div class="search_results">
+        <h4><i><%= "#{forecast["weather"][1]["weather_description"]}" %></i></h4>
+        <i class= "wi wi-owm-day-<%= "#{forecast["weather"][1]["weather_id"]}" %>" %></i>
+        <h4><%= "#{forecast["weather"][1]["day"]} #{forecast["weather"][1]["halfday"]}" %></h4>
+      </div>
+    <% end %>
 
-  <% if forecast["weather"][3].nil? %>
-  <div class="search_results">
-    <h4><i>Unknown as of yet</i></h4>
-    <img src="https://i.ibb.co/hZhfyXS/sad-cloud.png" alt="Cloud" style="width: 180px;margin: 30px 30px; text-align: center;">
-    <h4>Forecast for Sunday Afternoon is not yet available, please come back soon.</h4>
-  </div>
-  <% else %>
-  <div class="search_results">
-    <h4><i><%= "#{forecast["weather"][3]["weather_description"]}" %></i></h4>
-    <i class= "wi wi-owm-day-<%= "#{forecast["weather"][3]["weather_id"]}" %>" %></i>
-    <h4><%= "#{forecast["weather"][3]["day"]} #{forecast["weather"][3]["halfday"]}" %></h4>
-  </div>
+    <% if forecast["weather"][2].nil? %>
+      <div class="search_results">
+        <h4><i>Unknown as of yet</i></h4>
+        <img src="https://i.ibb.co/hZhfyXS/sad-cloud.png" alt="Cloud" style="width: 180px;margin: 30px 30px; text-align: center;">
+        <h4>Forecast for Sunday Morning is not yet available, please come back soon.</h4>
+      </div>
+    <% else %>
+      <div class="search_results">
+        <h4><i><%= "#{forecast["weather"][2]["weather_description"]}" %></i></h4>
+        <i class= "wi wi-owm-day-<%= "#{forecast["weather"][2]["weather_id"]}" %>" %></i>
+        <h4><%= "#{forecast["weather"][2]["day"]} #{forecast["weather"][2]["halfday"]}" %></h4>
+      </div>
+    <% end %>
+
+    <% if forecast["weather"][3].nil? %>
+      <div class="search_results">
+        <h4><i>Unknown as of yet</i></h4>
+        <img src="https://i.ibb.co/hZhfyXS/sad-cloud.png" alt="Cloud" style="width: 180px;margin: 30px 30px; text-align: center;">
+        <h4>Forecast for Sunday Afternoon is not yet available, please come back soon.</h4>
+      </div>
+    <% else %>
+      <div class="search_results">
+        <h4><i><%= "#{forecast["weather"][3]["weather_description"]}" %></i></h4>
+        <i class= "wi wi-owm-day-<%= "#{forecast["weather"][3]["weather_id"]}" %>" %></i>
+        <h4><%= "#{forecast["weather"][3]["day"]} #{forecast["weather"][3]["halfday"]}" %></h4>
+      </div>
+    <% end %>
+
+    <% elsif got_forecasts and not got_rainy %>
+      <div class="search_placeholder">
+        <h2 style="color: #000000; text-shadow: 0px 0px 0px black;">Go to quimper</h2>
+      </div>
+
+    <% else %>
+      <div class="search_placeholder">
+        <h2 style="color: #000000; text-shadow: 0px 0px 0px black;">Come back soon</h2>
+      </div>
+
   <% end %>
 
 </div>
